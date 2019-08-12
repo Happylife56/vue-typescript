@@ -39,5 +39,25 @@
         "typedef-whitespace": false, //在类型定义的时候，是否允许使用空格, 使用false，表示不对此项进行校验,不启用此项的校验
         "whitespace": false, //空格的校验
         "one-line": false, //要求指定的标记与它们之前的表达式位于同一行
+        "arrow-parens": false, //在箭头函数参数中需要parens（箭头 - parens）
+        "import-blacklist": [true, "rxjs"], //禁止指定的标识符
+        "no-empty": false, //禁止空块缺少代码的指示符
+        "no-inferrable-types": [true, "ignore-params"], // - 禁止对初始化为数字，字符串或布尔值的变量或参数进行显式类型声明。
+        "no-non-null-assertion": false, //使用非空断言取消了严格空检查模式
+        "no-string-literal": false, //禁止不必要的字符串文字属性访问
+        // "no-switch-case-fall-through": true,
+        "variable-name": false, //检查各种错误的变量名称
+
+        "use-input-property-decorator": true,
+        "use-output-property-decorator": true,
+        "use-host-property-decorator": true,
+        "no-input-rename": true,
+        "no-output-rename": true,
+        "use-life-cycle-interface": true,
+        "use-pipe-transform-interface": true,
+        "component-class-suffix": true, //使用@Component修饰的类必须在其名称中包含后缀“Component”（或自定义）。
+        "directive-class-suffix": true,
+        "templates-use-public": true,
+        "invoke-injectable": true
     }
 }
