@@ -11,8 +11,6 @@ export default new Vuex.Store({
     common,
   },
   plugins: [
-    createPersistedState({
-      storage: window.sessionStorage // 修改存储的状态
-    })
+    createPersistedState({ storage: window.sessionStorage })
   ] // 状态持久化
 });

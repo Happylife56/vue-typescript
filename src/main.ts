@@ -8,8 +8,8 @@ import './plugins/element.js';
 // 引入icons
 import './assets/iconfont/iconfont.css';
 // 引入公用的mixins
-const Mixin = require('./mixins')
-Vue.mixin(Mixin)
+import { MixinsIndex } from "./mixins/index";
+Vue.mixin(MixinsIndex);
 
 // 引入公用过滤器
 const filters = require('./filters')

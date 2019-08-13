@@ -31,7 +31,7 @@
         "src/**/*.tsx",
         "src/**/*.vue",
         "tests/**/*.ts",
-        "tests/**/*.tsx", "src/mixins/index.js", "src/directives/index.js"
+        "tests/**/*.tsx", "src/mixins/index.ts", "src/directives/index.js"
     ],
     "exclude": [
         "node_modules"

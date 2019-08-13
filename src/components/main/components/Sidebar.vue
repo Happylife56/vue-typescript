@@ -1,34 +1,42 @@
 // 导航栏
 <template>
-  <el-menu
-    default-active="1"
-    class="el-menu-vertical-demo sidebar"
-    @select="handleSelect"
-    :collapse="isCollapse"
-    background-color="#3d3d45"
-    text-color="#ffffff"
-    active-text-color="#f4364c"
-  >
-    <el-menu-item
-      v-for="item in menuList"
-      :key="item.id"
-      :index="item.id"
+  <div v-if="isCollapse">
+    <!--  :collapse="isCollapse" -->
+    <el-menu
+      default-active="1"
+      class="el-menu-vertical-demo sidebar"
+      @select="handleSelect"
+      background-color="#3d3d45"
+      text-color="#ffffff"
+      active-text-color="#f4364c"
     >
-      <i
-        class="iconfont"
-        :class="item.iconfont"
-      ></i>
-      <span slot="title">{{item.title}}</span>
-    </el-menu-item>
-  </el-menu>
+      <el-menu-item
+        v-for="item in menuList"
+        :key="item.id"
+        :index="item.id"
+      >
+        <i
+          class="iconfont"
+          :class="item.iconfont"
+        ></i>
+        <span slot="title">{{item.title}}</span>
+      </el-menu-item>
+    </el-menu>
+  </div>
 </template>
 
 <script lang="ts">
-import { Vue } from "vue-property-decorator";
+import { Vue, Component, Watch } from "vue-property-decorator";
+import { State, Mutation, namespace } from "vuex-class";
 
+@Component({})
 export default class Sidebar extends Vue {
   // data
-  isCollapse: boolean = false; // 是否折叠
+  // @State("common") isCollapse: any;
+
+  @State("isCollapse", { namespace: "common" }) isCollapse!: boolean;
+  @Mutation("setCollapseState", { namespace: "common" }) setCollapseState: any;
+  // isCollapse: boolean = false; // 是否折叠
   // object[]
   menuList: Array<object> = [
     { iconfont: "icon-caidan1", title: "", id: "0" },
@@ -43,6 +51,9 @@ export default class Sidebar extends Vue {
   // methods
   handleSelect(key: string, keyPath: string) {
     console.log(key, keyPath);
+    if (key === "0") {
+      this.setCollapseState(false);
+    }
   }
 }
 </script>
@@ -76,7 +87,7 @@ export default class Sidebar extends Vue {
 <style>
 .sidebar {
   height: 100%;
-  width: 100%;
+  width: 120px !important;
   position: relative;
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {

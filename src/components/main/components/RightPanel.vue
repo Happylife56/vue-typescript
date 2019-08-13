@@ -1,17 +1,32 @@
 //右面板
 <template>
   <div class="right-panel">
-    <h3>右面板</h3>
+    <!-- <h3>右面板</h3> -->
+    <BaseTablePage
+      :totalElements="30"
+      @current-change="currentChange"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-export default Vue.extend({
-  data() {
-    return {};
+import { Component, Emit, Vue } from "vue-property-decorator";
+import BaseTablePage from "@/components/BaseTablePage.vue";
+
+@Component({
+  components: {
+    BaseTablePage
   }
-});
+})
+export default class RightPanel extends Vue {
+  currentChange(val: number) {
+    console.log(val);
+  }
+
+  mounted() {
+    console.log(this.$store);
+  }
+}
 </script>
 
 
@@ -19,7 +34,7 @@ export default Vue.extend({
 .right-panel {
   margin: 10px;
   background-color: #ffffff;
-  @include flex-type(center, center);
+  // @include flex-type(center, center);
 }
 </style>
 
