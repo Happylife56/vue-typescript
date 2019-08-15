@@ -1,0 +1,35 @@
+.add-goods-panel {
+    .table {
+      height: 486px;
+    }
+    .card-panel {
+      .el-card__header {
+        padding: 11px 20px;
+        background: #f5f7fa;
+        .card-head {
+          @include flex-type(space-between, center);
+        }
+      }
+      .el-card__body {
+        height: 402px;
+        overflow-y: auto;
+      }
+      .goods-item {
+        width: 100%;
+        @include flex-type(space-between, center);
+      }
+      .text-overflow {
+        width: 45%;
+      }
+    }
+    .btn-group {
+      width: 100%;
+      margin-top: 20px;
+      @include flex-type(flex-end, null);
+    }
+    .text-right {
+      .el-form-item__error {
+        left: 228px;
+      }
+    }
+  }

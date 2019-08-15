@@ -49,8 +49,11 @@
         // "no-switch-case-fall-through": true,
         "variable-name": false, //检查各种错误的变量名称
 
-        "curly": true,
         "class-name": true,
-        "triple-equals": true
+        "triple-equals": true,
+        "no-shadowed-variable": false, // 不允许隐藏变量声明
+        "no-unused-variable": false, // 禁止未使用的导入，变量，函数和私有类成员
+        "no-use-before-declare": false,
+        "curly": [true, "ignore-same-line"] // 执行if/ for/ do/ while语句的大括号
     }
 }

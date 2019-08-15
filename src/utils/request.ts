@@ -1,4 +1,3 @@
-'use strict'
 /**
  * @file axios请求封装
  */
@@ -9,7 +8,7 @@ import {
 } from 'element-ui'
 
 // 全屏loading
-let loadingInstance = {}
+const loadingInstance = {}
 
 // 响应时间
 axios.defaults.timeout = 10000
@@ -28,13 +27,18 @@ axios.interceptors.request.use(
         //   fullscreen: true
         // });
         // 获取token
+        // @ts-ignore
         if (store.state.common.token) {
             // 判断是否存在token，如果存在的话，则每个http header都加上token
-            config.headers.Authorization = store.state.common.token
+            // @ts-ignore
+            // config.headers.Authorization = store.state.common.token
         }
+        // tslint:disable-next-line:max-line-length
+        config.headers.Authorization = `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NjU3NTIyNDYsInN1YiI6IntcImJ1c0lkXCI6XCIzNlwiLFwicmFuZG9tXCI6XCI4MjIwNjVcIixcImJ1c05hbWVcIjpcImdvb2R0b21cIn0iLCJpc3MiOiJkdW9mcmllbmQiLCJhdWQiOiJkdW9mZW4iLCJleHAiOjE1OTc0MjA3OTksIm5iZiI6MTU2NTc1MjI0Nn0.QKcJ6KnZj-53JjzW_yjbwS9hfezjxhg4VwwnUh6U5hU`
         return config
     },
     error => {
+        // @ts-ignore
         loadingInstance.close()
         return Promise.reject(error)
     }
@@ -44,23 +48,23 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
     response => {
         // 设置token不过期
-        store.commit('common/setTokenState', false)
+        // store.commit('common/setTokenState', false)
         // store.commit('common/setQuitShift', false)
         if (
             typeof response !== 'undefined' &&
-            (response.data.code == 1001 ||
-                response.data.code == 0 ||
-                response.data.code == 1000 ||
-                response.data.code == 1100 ||
-                response.data.code == 1200)
+            (response.data.code === 1001 ||
+                response.data.code === 0 ||
+                response.data.code === 1000 ||
+                response.data.code === 1100 ||
+                response.data.code === 1200)
         ) {
             return response.data
-        } else if (typeof response !== 'undefined' && response.data.code == 1006) {
+        } else if (typeof response !== 'undefined' && response.data.code === 1006) {
             // Message.error(response.data.msg);
             // 设置token过期
             // store.commit('common/setTokenState', true)
 
-        } else if (typeof response !== 'undefined' && response.data.code == 20008) {
+        } else if (typeof response !== 'undefined' && response.data.code === 20008) {
 
         } else if (typeof response !== 'undefined' && response.data.msg) {
             if (response.data.code !== 1006) checkCode(response.data.msg)
@@ -120,27 +124,28 @@ axios.interceptors.response.use(
 )
 
 // 请求失败错误信息提示
-function checkCode(message) {
+function checkCode(message: string) {
     // 关闭loading
     // loadingInstance.close();
     // 弹出错误信息
+    // @ts-ignore
     Message.closeAll()
     Message.error(message)
 }
 export default {
-    post(obj) {
+    post(obj: any) {
         return axios
             .post(obj.url, obj.params)
-            .then(res => {
+            .then((res: any) => {
                 if (typeof res.data !== 'undefined' && typeof obj.fn !== 'undefined') {
-                    if (res.code == 1200) {
+                    if (res.code === 1200) {
                         obj.fn(res)
                     } else {
                         obj.fn(res.data)
                     }
                 }
                 if (typeof res.data === 'undefined') {
-                    if (res.code == 1000 || res.code == 1001 || res.code == 1100 || res.code == 20008) {
+                    if (res.code === 1000 || res.code === 1001 || res.code === 1100 || res.code === 20008) {
                         obj.fn(res)
                     }
                 }
@@ -150,18 +155,18 @@ export default {
                 checkCode(err.message)
             })
     },
-    get(obj) {
+    get(obj: any) {
         return axios
             .get(obj.url, {
                 params: obj.params
             })
-            .then(res => {
+            .then((res: any) => {
                 if (typeof res.data !== 'undefined' && typeof obj.fn !== 'undefined') {
                     obj.fn(res.data)
                     return
                 }
                 if (typeof res.data === 'undefined') {
-                    if (res.code == 1000 || res.code == 1001) {
+                    if (res.code === 1000 || res.code === 1001) {
                         obj.fn(res)
                     }
                 }
@@ -171,7 +176,7 @@ export default {
                 checkCode(err.message)
             })
     },
-    put(obj) {
+    put(obj: any) {
         return axios
             .put(obj.url, obj.params)
             .then(res => {
@@ -184,7 +189,7 @@ export default {
                 checkCode(err.message)
             })
     },
-    delete(obj) {
+    delete(obj: any) {
         return axios
             .delete(obj.url, obj.params)
             .then(res => {
@@ -197,7 +202,7 @@ export default {
                 checkCode(err.message)
             })
     },
-    all(obj) {
+    all(obj: any) {
         return axios
             .all(obj.url)
             .then(res => {

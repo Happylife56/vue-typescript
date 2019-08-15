@@ -1,7 +1,7 @@
 // 公共的方法
 import { Message } from 'element-ui'
 import { Vue, Component } from 'vue-property-decorator'
-@Component({})
+@Component
 export class MixinsIndex extends Vue {
     // 跳转路由
     loadPage(routerName: string, params2?: string) {

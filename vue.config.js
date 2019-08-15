@@ -62,8 +62,8 @@ module.exports = {
             // proxy table example
             '/shops': {
                 // target: 'http://192.168.11.61:8081',
-                // target: 'https://shop.deeptel.com.cn',
-                target: 'http://192.168.11.210:8081',
+                target: 'https://shop.deeptel.com.cn',
+                // target: 'http://192.168.11.210:8081',
                 changeOrigin: true,
                 pathRewrite: {
                     // 如果接口本身没有/api需要通过pathRewrite来重写了地址

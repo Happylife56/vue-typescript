@@ -11,11 +11,13 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Mixins } from "vue-property-decorator";
 import { State, Mutation, namespace } from "vuex-class";
+import { Test } from "@/mixins/test.ts";
+import { Common } from "@/mixins/common.ts";
 
 @Component
-export default class headerTitle extends Vue {
+export default class HeaderTitle extends Mixins(Test, Common) {
   @State("isCollapse", { namespace: "common" }) isCollapse!: boolean;
 
   @Mutation("setCollapseState", { namespace: "common" }) setCollapseState: any;
